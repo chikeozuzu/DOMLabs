@@ -1,5 +1,13 @@
 import "./styles.css";
 
+// Menu data structure
+var menuLinks = [
+  { text: 'about', href: '/about' },
+  { text: 'catalog', href: '/catalog' },
+  { text: 'orders', href: '/orders' },
+  { text: 'account', href: '/account' },
+];
+
 /*  DOM manipulation focusing on adding static elements created with JavaScript without modifying
     any of the content of the index.html or styles.css files.
 */
