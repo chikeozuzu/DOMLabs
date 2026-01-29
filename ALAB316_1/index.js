@@ -52,3 +52,10 @@ topMenuEl.classList.add("flex-around");
     Append the new element to the topMenuEl element.
 */
 
+menuLinks.forEach(link => {
+  const a = document.createElement("a");
+  a.href = link.href;
+  a.textContent = link.text;
+  topMenuEl.appendChild(a);
+});
+
