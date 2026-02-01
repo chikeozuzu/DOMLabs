@@ -58,4 +58,3 @@ menuLinks.forEach(link => {
   a.textContent = link.text;
   topMenuEl.appendChild(a);
 });
-
