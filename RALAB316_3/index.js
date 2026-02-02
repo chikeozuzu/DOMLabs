@@ -47,5 +47,25 @@ document.addEventListener('DOMContentLoaded', function () {
         a.textContent = link.text;
         topMenuEl.appendChild(a);
     });
+
+    const topMenuLinks = topMenuEl.querySelectorAll('a');
+
+    topMenuEl.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        if (evt.target.tagName !== 'A') return;
+        console.log(evt.target.textContent);
+
+        const clicked = evt.target;
+
+        topMenuLinks.forEach(function (link) {
+            if (link !== clicked) link.classList.remove('active');
+        });
+
+        if (clicked.classList.contains('active')) {
+            clicked.classList.remove('active');
+        } else {
+            clicked.classList.add('active');
+        }
+    });
 });
 
