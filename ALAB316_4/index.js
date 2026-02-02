@@ -111,4 +111,44 @@ document.addEventListener('DOMContentLoaded', () => {
 			clearError();
 		}, 4000);
 	});
+
+	// Login form handling
+	const loginForm = document.getElementById('login');
+	if (loginForm) {
+		loginForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			clearError();
+
+			const form = e.target;
+			const usernameEl = form.querySelector('[name="username"]');
+			const passwordEl = form.querySelector('[name="password"]');
+			const persistEl = form.querySelector('[name="persist"]');
+
+			const username = (usernameEl.value || '').trim();
+			const password = passwordEl.value || '';
+
+			if (!username) return showError('The username cannot be blank.', usernameEl);
+
+			const users = loadUsers();
+			const found = users.find(u => u.username === username.toLowerCase());
+			if (!found) return showError('The username must exist (within localStorage).', usernameEl);
+
+			if (!password) return showError('The password cannot be blank.', passwordEl);
+			if (found.password !== password) return showError('The password must be correct (validate against localStorage).', passwordEl);
+
+			// Success
+			form.reset();
+			errorDisplay.style.display = 'block';
+			errorDisplay.style.color = 'green';
+			if (persistEl && persistEl.checked) {
+				errorDisplay.textContent = 'Login successful. You will be kept logged in.';
+			} else {
+				errorDisplay.textContent = 'Login successful.';
+			}
+			setTimeout(() => {
+				errorDisplay.style.color = '';
+				clearError();
+			}, 4000);
+		});
+	}
 });
