@@ -20,26 +20,24 @@
 
         <!-- Registration Form -->
         <form id="registration">
-          <input name="username" type="text" placeholder="Username" />
+          <input id="reg-username" name="username" type="text" placeholder="Username" />
           <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
-
-          <input name="email" type="text" placeholder="Email" />
+          <input id="reg-email" name="email" type="text" placeholder="Email" />
           <span class="input-icon"><i class="fa-solid fa-envelope"></i></span
           ><br />
-
-          <input name="password" type="text" placeholder="Password" />
+          <input id="reg-password" name="password" type="password" placeholder="Password" />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
-
           <input
+            id="reg-passwordCheck"
             name="passwordCheck"
-            type="text"
+            type="password"
             placeholder="Repeat Password"
           />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span
           ><br /><br />
 
           <div class="flex-row">
-            <input name="terms" type="checkbox" />
+            <input id="terms" name="terms" type="checkbox" />
             <label for="terms"
               >I agree to the&nbsp;<a href="#">Terms of Use</a>.</label
             >
