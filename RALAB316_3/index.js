@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
     topMenuEl.style.backgroundColor = 'var(--top-menu-bg)';
     topMenuEl.classList.add('flex-around');
 
+    const subMenuEl = document.getElementById('sub-menu');
+    subMenuEl.style.height = '100%';
+    subMenuEl.style.backgroundColor = 'var(--sub-menu-bg)';
+    subMenuEl.classList.add('flex-around');
+    subMenuEl.style.position = 'absolute';
+    subMenuEl.style.top = '0';
+
     menuLinks.forEach(function (link) {
         const a = document.createElement('a');
         a.setAttribute('href', link.href);
