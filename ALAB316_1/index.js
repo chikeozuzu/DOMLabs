@@ -1,5 +1,3 @@
-import "./styles.css";
-
 // Menu data structure
 var menuLinks = [
   { text: 'about', href: '/about' },
