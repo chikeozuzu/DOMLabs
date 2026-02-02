@@ -41,6 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
     subMenuEl.style.position = 'absolute';
     subMenuEl.style.top = '0';
 
+    function buildSubmenu(subLinks) {
+        subMenuEl.innerHTML = '';
+        subLinks.forEach(function (link) {
+            const a = document.createElement('a');
+            a.setAttribute('href', link.href);
+            a.textContent = link.text;
+            subMenuEl.appendChild(a);
+        });
+    }
+
     menuLinks.forEach(function (link) {
         const a = document.createElement('a');
         a.setAttribute('href', link.href);
@@ -56,16 +66,50 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(evt.target.textContent);
 
         const clicked = evt.target;
+        const wasActive = clicked.classList.contains('active');
+
+        // cache the corresponding link object from menuLinks
+        const linkObj = menuLinks.find(function (link) {
+            return link.text === clicked.textContent;
+        });
+
+        // if the clicked link was not active when clicked, decide submenu visibility
+        if (!wasActive) {
+            if (linkObj && linkObj.subLinks) {
+                subMenuEl.style.top = '100%';
+                buildSubmenu(linkObj.subLinks);
+            } else {
+                subMenuEl.style.top = '0';
+                const title = linkObj ? (linkObj.text.charAt(0).toUpperCase() + linkObj.text.slice(1)) : clicked.textContent;
+                mainEl.innerHTML = `<h1>${title}</h1>`;
+            }
+        }
 
         topMenuLinks.forEach(function (link) {
             if (link !== clicked) link.classList.remove('active');
         });
 
-        if (clicked.classList.contains('active')) {
+        if (wasActive) {
             clicked.classList.remove('active');
         } else {
             clicked.classList.add('active');
         }
+    });
+
+    subMenuEl.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        if (evt.target.tagName !== 'A') return;
+
+        const clickedSub = evt.target;
+        console.log(clickedSub.textContent);
+
+        subMenuEl.style.top = '0';
+
+        topMenuLinks.forEach(function (link) {
+            link.classList.remove('active');
+        });
+
+        mainEl.innerHTML = `<h1>${clickedSub.textContent}</h1>`;
     });
 });
 
